@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-size: .14rem; }
+
+.wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: url("../image/04.jpg") center center; }
+  .wrap .header, .wrap .footer {
+    width: 100%;
+    height: .45rem; }
+  .wrap .main {
+    width: 100%;
+    flex: 1;
+    overflow: auto; }
+    .wrap .main .container {
+      width: 100%;
+      padding: 5% 7%; }
+      .wrap .main .container p {
+        text-align: center;
+        font-size: .18rem;
+        font-weight: 600; }
+  .wrap .footer {
+    display: flex;
+    justify-content: space-around;
+    color: white;
+    font-weight: 600;
+    line-height: .45rem;
+    text-align: center; }
+    .wrap .footer span {
+      width: 100%; }

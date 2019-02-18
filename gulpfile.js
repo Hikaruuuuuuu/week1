@@ -2,7 +2,7 @@
  * @Author: mikey.kangjie 
  * @Date: 2019-02-18 08:55:17 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-02-18 09:09:31
+ * @Last Modified time: 2019-02-18 09:29:08
  */
 
 
@@ -13,6 +13,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     babel = require('gulp-babel'),
+    htmlmin = require('gulp-htmlmin'),
     server = require('gulp-webserver'),
     fs = require('fs'),
     path = require('path'),
@@ -65,9 +66,9 @@ gulp.task('default', gulp.series('sass','babel', 'webserver', 'watch' ))
 // 线上环境
 // 压缩并转移js
 gulp.task('distjs', ()=>{
-    return gulp.src(['./src/js/fin', './src/js/lib'])
+    return gulp.src('./src/js/**/*.js')
         .pipe(uglify()) // 压缩js
-        .pipe(gulp.dest('./dist/js'))
+        .pipe(gulp.dest('./dist/js/'))
 })
 
 // 压缩css
@@ -77,5 +78,18 @@ gulp.task('distcss', ()=>{
         .pipe(gulp.dest('./dist/css'))
 })
 
+// html 
+gulp.task('disthtml', ()=>{
+    return gulp.src('./src/**/*.html')
+        .pipe(htmlmin())
+        .pipe(gulp.dest('./dist'))
+})
+
+// image 
+gulp.task('img', ()=>{
+    return gulp.src('./src/image/*.jpg')
+        .pipe(gulp.dest('./dist/image'))
+})
+
 // build 
-gulp.task('build', gulp.series('distjs', 'distcss'))
+gulp.task('build', gulp.series('distjs', 'distcss', 'disthtml', 'img'))
